@@ -1,90 +1,163 @@
 package model;/*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 3
- * This class handles the owner including credits, and has lists to store treats
+ * Assignment: Assignment 4
+ * This class was unchanged from Assignment 3
  */
 
 import java.util.*;
 
+/**
+ * Describes an model.Owner. An owner owns an model.ICritter and has money to buy Treats for his/her/it's model.ICritter
+ * 
+ *
+ */
 public class Owner
 {
-	// Creates the instance variables for the critter, treats, and the credits
-	private ICritter iCritter;
-	private ArrayList<Treat> treats = new ArrayList<Treat>();
-	private Integer credits;
+	private ICritter iCritter;// the critter
+	private List<Treat> treats;// a list of all the treats owned by this owner
+	private Integer credits;// the number of credits this owner has
 
-	public Owner() // Constructor takes no arguments
+	/**
+	 * <b>model.Owner</b>
+	 * <p>
+	 * Constructs a new model.Owner. During construction, the owner will create an model.ICritter to own as well.
+	 * 
+	 *
+	 */
+	public Owner()
 	{
-		String name = "ladyBug"; // The name of the new Critter
-		iCritter = new ICritter(name, this); // Creates a new critter with the name we gave and 'this' as the owner
-		credits = 10; // Default credits are 10
+		// create our new model.ICritter with it's name and this model.Owner as the model.Owner.
+		iCritter = new ICritterDog("John's model.ICritter", this);
+
+		credits = 10;// owner starts with 10 credits
+
+		// initialize treats to an empty linkedList.
+		treats = new LinkedList<Treat>();
 	}
 
-	public ICritterReaction giveTreat(Treat toGive)
+	/**
+	 * <b>giveTreat</b>
+	 * <p>
+	 * Gives a treat to this owner's model.ICritter and returns the model.ICritter's reaction. If the owner does not own the treat, this
+	 * method will return null. Once finished, this owner will no longer own the treat passed in.
+	 * 
+	 * @param theTreat
+	 *            The treat to give to the model.ICritter. {@link Treat}
+	 * 
+	 * @return model.ICritterReaction {@link ICritterReaction}
+	 * 
+	 *
+	 */
+	public ICritterReaction giveTreat(Treat theTreat)
 	{
+		if (treats.contains(theTreat))
+		{// does the owner own the treat?
+			treats.remove(theTreat);// remove the treat from our treats list
+			return iCritter.receiveTreat(theTreat);// return the model.ICritter's reaction
+		} else
+			return null;// owner does not own the treat
+	}
 
-		for (int i = 0; i < treats.size(); i++) // Want to see if we have the treat we want to give
-		{
-			if (treats.get(i).equals(toGive))
-			{
-				treats.remove(i); // If we have the treat, remove it so we can give it to the critter
-				return iCritter.receiveTreat(toGive); // Gives the critter the treat
-			}
+	/**
+	 * <b>buyCheapTreat</b>
+	 * <p>
+	 * Buys a cheap treat with the given description and adds it to the owner's treats list. If the model.Owner does not have
+	 * enough credits, the treat will not be bought and the treat will not be added, this method will also return null. If
+	 * the model.Owner does have enough credits, the treat will be bought and the treat returned.
+	 * 
+	 * @param desc
+	 *            The description of the treat requested to be bought.
+	 * 
+	 * @return {@link CheapTreat}
+	 * 
+	 *
+	 */
+	public CheapTreat buyCheapTreat(String desc)
+	{
+		// create the cheapTreat
+		CheapTreat theTreat = new CheapTreat(desc);
+
+		if (credits >= theTreat.getCost())
+		{// if we have enough money
+			credits -= theTreat.getCost();// subtract the credits
+			addTreat(theTreat);// add our treat to our treat stockpile
+			return theTreat;// return the treat
+		} else
+		{// otherwise return null
+			return null;
 		}
-
-		return null; // Returns null if the treat is not present
-
 	}
 
-	public CheapTreat buyCheapTreat(String toAdd)
+	/**
+	 * <b>listTreats</b>
+	 * <p>
+	 * This will return a list of treats owned by the owner. This list may be empty.
+	 * 
+	 * @return List<model.Treat> {@link Treat}
+	 * 
+	 *
+	 */
+	public List<Treat> listTreats()
 	{
-		CheapTreat newTreat = new CheapTreat(toAdd); // Creates a model.Treat object of the new treat.
-
-		if (credits >= newTreat.getCost()) // Checks to see if we have the proper amount of credits.
-		{
-
-			addTreat(newTreat); // Adds the treat if we have the money
-			adjustCredits(-newTreat.getCost()); // - The cost of the credits from what we have.
-
-			return newTreat; // Returns the new model.Treat we just added
-		}
-
-		return null; // If can't add, return null.
+		return treats;// returns our list of treats
 	}
 
-	public ArrayList<Treat> listTreats() // The array list of our treats
-	{
-
-		ArrayList<Treat> toReturn = new ArrayList<Treat>(); // Creates an array to copy the contents
-
-		for (int i = 0; i < treats.size(); i++)
-		{
-			toReturn.add(treats.get(i)); // Copies location i of treats to our to return array
-		}
-		return toReturn; // Returns the array
-	}
-
+	/**
+	 * <b>getCritter</b>
+	 * <p>
+	 * Returns a reference to the critter owned by this model.Owner.
+	 * 
+	 * @return {@link ICritter}
+	 * 
+	 *
+	 */
 	public ICritter getCritter()
 	{
-
-		return iCritter; // Returns the critter
+		return iCritter;
 	}
 
+	/**
+	 * <b>getCredits</b>
+	 * <p>
+	 * Returns the number of credits this owner has.
+	 * 
+	 * @return Integer
+	 * 
+	 *
+	 */
 	public Integer getCredits()
 	{
-
-		return credits; // Returns the credits
+		return credits;
 	}
 
-	private void adjustCredits(Integer toAdjust)
+	/**
+	 * <b>adjustCredits</b>
+	 * <p>
+	 * Adds the given amount to the owners number of credits.
+	 * 
+	 * @param amount
+	 *            Amount to adjust the credits by
+	 * 
+	 *
+	 */
+	private void adjustCredits(Integer amount)
 	{
-		credits = credits + toAdjust; // Adjusts the credits by adding what to adjust
+		credits += amount;
 	}
 
-	private void addTreat(Treat treatToAdd)
+	/**
+	 * <b>addTreat</b>
+	 * <p>
+	 * adds a treat to the owner's stockpile of treats.
+	 * 
+	 * @param theTreat
+	 *            The treat to be added
+	 * 
+	 *
+	 */
+	public void addTreat(Treat theTreat)
 	{
-		treats.add(treatToAdd); // Adds the treat to our array
+		treats.add(theTreat);
 	}
-
 }

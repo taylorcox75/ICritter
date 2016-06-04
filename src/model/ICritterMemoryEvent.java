@@ -1,30 +1,57 @@
 package model;/*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 3
- * This class hanndles memory events
+ * Assignment: Assignment 4
+ * Unchanged from Assisgnment 3
  */
 
+/**
+ * Class describes an model.ICritterMemoryEvent. A memory event is used to store how an model.ICritter reacted to something.
+ * ICritterMemoryEvents are stored in an model.ICritter.
+ * 
+ *
+ */
 public class ICritterMemoryEvent
 {
-	// Instance variable decalaraton
-	private Treat rememberedTreat;
-	private ICritterReaction RememberedReaction;
+	private Treat rememberedTreat;// the treat to remember for this event
+	private ICritterReaction rememberedReaction;// the reaction to remember for this event
 
-	public ICritterMemoryEvent(Treat treatIn, ICritterReaction reactionIn)
+	/**
+	 * Will create a new model.ICritterMemoryEvent.
+	 * 
+	 * @param theTreat
+	 *            The treat to remember for this reaction
+	 * 
+	 * @param theReaction
+	 *            How the critter reacted to theTreat.
+	 * 
+	 *
+	 */
+	public ICritterMemoryEvent(Treat theTreat, ICritterReaction theReaction)
 	{
-		rememberedTreat = treatIn; // creates a memory event object that gets stored into an iCritter's list of memories
-		RememberedReaction = reactionIn; // takes a treat and a reaction object to remember
+		rememberedTreat = theTreat;
+		rememberedReaction = theReaction;
 	}
 
+	/**
+	 * Returns the rememberedTreat
+	 * 
+	 * @return model.Treat {@link Treat}
+	 *
+	 */
 	public Treat getRememberedTreat()
 	{
-		return rememberedTreat; // returns the treat object from the specific memory object
+		return rememberedTreat;
 	}
 
+	/**
+	 * Returns the rememberedReaction
+	 * 
+	 * @return model.ICritterReaction {@link ICritterReaction}
+	 */
 	public ICritterReaction getRememberedReaction()
 	{
-		return RememberedReaction; // returns the reaction object from the specific memory object
+		return rememberedReaction;
 	}
 
 }

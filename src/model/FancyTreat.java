@@ -1,23 +1,41 @@
 package model;/*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 3
- * This class handles FancyTreats child of treat class
+ * Assignment: Assignment 4
+ * Unchanged from Assignment 3
  */
 
+/**
+ * Class describes a model.FancyTreat. model.FancyTreat extends model.Treat.
+ * 
+ * {@link Treat}
+ * 
+ *
+ */
 public class FancyTreat extends Treat
 {
 
-	FancyTreat(String theTreat)
+	/**
+	 * Creates a new model.FancyTreat object.
+	 * 
+	 * @param desc
+	 *            the description of the treat
+	 * 
+	 *
+	 */
+	public FancyTreat(String desc)
 	{
-		super(theTreat); // Calls the parent class
-
+		super(desc);
 	}
 
-	@Override
-	public Integer getCost() // Overrides the getCost() of treat
+	/**
+	 * Returns the cost of a model.FancyTreat (currently 5)
+	 * 
+	 *
+	 */
+	public Integer getCost()
 	{
-		return 5; // Returns the cost of credits to buy
+		return 5;
 	}
 
 }

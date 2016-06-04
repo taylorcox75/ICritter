@@ -1,34 +1,43 @@
 package model;/*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 3
- * This class handles model.Treat objects, parent of model.CheapTreat and model.FancyTreat
+ * Assignment: Assignment 4
+ * This class was unchanged from Assignment 3
  */
 
 import java.util.*;
 
+/**
+ * This class represents a model.Treat that an model.ICritter can eat other types of treats will extend this treat
+ * 
+ * @author: Taylor Cox
+ */
 public abstract class Treat
 {
-	private String description; // The instance variable for the description of the treat
 
-	public Treat(String theTreat)
+	private String description;// The description of the treat (initialized by the constructor)
+
+	/**
+	 * @param: desc a String representation of the description of this treat
+	 *
+	 */
+	public Treat(String desc)
 	{
-		description = theTreat; // Setting the description of the treat to the passed in value
-
+		description = desc;
 	}
 
-	public Integer getCost() // This method was overridden in CheapTreats and FancyTreats so it does nothing
-	{
+	/**
+	 * Returns the cost of this treat
+	 */
+	public abstract Integer getCost();
 
-		Integer toReturn = 0;
-
-		return toReturn;
-	}
-
+	/**
+	 * Returns the string representation of the treat's description
+	 * 
+	 *
+	 */
 	public String getDescription()
 	{
-		String toReturn = description; // Returns the description
-
-		return toReturn;
+		return description;
 	}
 }

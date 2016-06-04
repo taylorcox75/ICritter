@@ -1,24 +1,39 @@
 package model;/*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 3
- * This class handles CheapTreats child of treat class
+ * Assignment: Assignment 4
+ * Unchanged from Assignment 3
  */
 
+/**
+ * Class describes a model.CheapTreat. model.CheapTreat is an extension of the class model.Treat {@link Treat}
+ * 
+ *
+ */
 public class CheapTreat extends Treat
 {
 
-	public CheapTreat(String theTreat)
+	/**
+	 * Constructs a new model.CheapTreat
+	 * 
+	 * @param desc
+	 *            description of the treat
+	 * 
+	 *
+	 */
+	public CheapTreat(String desc)
 	{
-		super(theTreat); // Calls the parent class
-
+		super(desc);
 	}
 
-	@Override
-	// Overrides the getCost() of treat
+	/**
+	 * returns the cost of a model.CheapTreat (currently 1)
+	 * 
+	 *
+	 */
 	public Integer getCost()
 	{
-		return 1; // The cost of the treat in credits
+		return 1;
 	}
 
 }
