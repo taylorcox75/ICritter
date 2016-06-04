@@ -1,23 +1,39 @@
-package model;/*
+/*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 4
- * This class extends model.ICritter and is used to make objects
+ * Assignment: Assignment 5
+ * This Class Is Unchanged From Assignment 4
  */
 
+package model;
+
+/**
+ * Defines a LandICritter
+ * 
+ * Left abstract so we can not instantiate a regular LandICritter
+ */
 public abstract class LandICritter extends ICritter
-{ // Extends the model.ICritter
+{
 
 	public LandICritter(String theName, Owner theOwner)
 	{
-		super(theName, theOwner); // Calls the constructor of model.ICritter
+		super(theName, theOwner);
 	}
 
-	public void interact(ICritter otherCritter)
+	/**
+	 * <b>interact</b> The LandICritter always adds other LandICritters, but never MarineICritters.
+	 * 
+	 * @param other
+	 *            The other ICritter to interact with
+	 * 
+	 *
+	 */
+	public void interact(ICritter other)
 	{
-		if (otherCritter instanceof LandICritter) // If they are both land critters, they can interact
+		if (other instanceof LandICritter)
 		{
-			this.addFriend(otherCritter); // Adds the new Critter as a friend
+			addFriend(other);// add them as a friend since they are a LandICritter
 		}
+		// LandICritter doesn't add any other types of ICritters as friends, nothing else to do here
 	}
 }

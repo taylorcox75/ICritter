@@ -1,20 +1,20 @@
-package model;/*
+/*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 4
- * Creates a dog as a type of land critter
+ * Assignment: Assignment 5
+ * This Class Is Unchanged From Assignment 4
  */
+package model;
 
+/**
+ * Defines a dog ICritter
+ */
 public class ICritterDog extends LandICritter
-{ // Extends the model.LandICritter class
+{
 
 	public ICritterDog(String theName, Owner theOwner)
 	{
-		super(theName, theOwner); // Calls the model.LandICritter constructor
+		super(theName, theOwner);
 	}
 
-	public void interact(ICritter inCritter)
-	{
-		super.interact(inCritter); // Calls the interact method of the critter type
-	}
 }

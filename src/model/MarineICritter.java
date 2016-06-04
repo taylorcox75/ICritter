@@ -1,24 +1,37 @@
-package model;/*
+/*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 4
- * This abstract class uses model.ICritter to make a type of Critter
+ * Assignment: Assignment 5
+ * This Class Is Unchanged From Assignment 4
  */
 
-public abstract class MarineICritter extends ICritter // Extends a class
+package model;
+
+/**
+ * Defines a MarineICritter Left abstract to prevent the ability to instantiate it
+ */
+public abstract class MarineICritter extends ICritter
 {
 
 	public MarineICritter(String theName, Owner theOwner)
 	{
-		super(theName, theOwner); // Calls super to create a new model.ICritter
+		super(theName, theOwner);
 	}
 
-	public void interact(ICritter otherCritter)
+	/**
+	 * <b>interact</b>
+	 * <p>
+	 * If this ICritter and the other ICritter have at least a 50% correlation in interests, this ICritter will befriend the
+	 * other (or stalk it)
+	 * 
+	 * @parm other The other ICritter to interact with
+	 * 
+	 *
+	 */
+	public void interact(ICritter other)
 	{
-		if (this.interestCorrelation(otherCritter) >= 0.5) // Checks to see if their interersts are >= .5
-		{
-			this.addFriend(otherCritter); // Adds the friend from new critter to this instance
-		}
+		if (this.interestCorrelation(other) >= .5)// if the interest correlation between the two is at least 50%
+			addFriend(other);
+		// doesn't add any other ICritters as friends
 	}
-
 }

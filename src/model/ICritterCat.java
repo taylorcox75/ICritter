@@ -1,20 +1,21 @@
-package model;/*
+/*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 4
- * Creates a cat as a type of model.LandICritter
+ * Assignment: Assignment 5
+ * This Class Is Unchanged From Assignment 4
  */
 
+package model;
+
+/**
+ * Defines and ICritterCat
+ */
 public class ICritterCat extends LandICritter
 {
 
 	public ICritterCat(String theName, Owner theOwner)
 	{
-		super(theName, theOwner); // Calls the super constructor on model.LandICritter
+		super(theName, theOwner);
 	}
 
-	public void interact(ICritter inCritter)
-	{
-		super.interact(inCritter); // Calls the interact method of the model.LandICritter
-	}
 }

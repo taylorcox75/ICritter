@@ -1,12 +1,14 @@
-package model;/*
+/*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 4
- * Unchanged from Assignment 3
+ * Assignment: Assignment 5
+ * Added a toString to get the Name
  */
 
+package model;
+
 /**
- * Class describes a model.FancyTreat. model.FancyTreat extends model.Treat.
+ * Class describes a FancyTreat. FancyTreat extends Treat.
  * 
  * {@link Treat}
  * 
@@ -16,7 +18,7 @@ public class FancyTreat extends Treat
 {
 
 	/**
-	 * Creates a new model.FancyTreat object.
+	 * Creates a new FancyTreat object.
 	 * 
 	 * @param desc
 	 *            the description of the treat
@@ -29,13 +31,18 @@ public class FancyTreat extends Treat
 	}
 
 	/**
-	 * Returns the cost of a model.FancyTreat (currently 5)
+	 * Returns the cost of a FancyTreat (currently 5)
 	 * 
 	 *
 	 */
 	public Integer getCost()
 	{
 		return 5;
+	}
+
+	public String toString()
+	{
+		return "Fancy Treat";
 	}
 
 }

@@ -1,60 +1,74 @@
-package model;/*
+/*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 4
- * This class was unchanged from Assignment 3
+ * Assignment: Assignment 5
+ * This Class extends Observable, sets changed, and notifies observable
+ * 
+ * this.setChanged() 
+ * Let's notify observers know that something is changed
+ * 
+ * this.notifyObservers(new view.ICritterUpdate(view.ICritterUpdate.UPDATE_OWNER))
+ * Calls the respective update methods in ICritterView()
  */
+
+package model;
 
 import java.util.*;
 
 /**
- * Describes an model.Owner. An owner owns an model.ICritter and has money to buy Treats for his/her/it's model.ICritter
+ * Describes an Owner. An owner owns an ICritter and has money to buy Treats for his/her/it's ICritter
  * 
  *
  */
-public class Owner
+public class Owner extends Observable
 {
 	private ICritter iCritter;// the critter
 	private List<Treat> treats;// a list of all the treats owned by this owner
 	private Integer credits;// the number of credits this owner has
+	private String name;
 
 	/**
-	 * <b>model.Owner</b>
+	 * <b>Owner</b>
 	 * <p>
-	 * Constructs a new model.Owner. During construction, the owner will create an model.ICritter to own as well.
+	 * Constructs a new Owner. During construction, the owner will create an ICritter to own as well.
 	 * 
 	 *
 	 */
-	public Owner()
+	public Owner(String ownerName, String critterName)
 	{
-		// create our new model.ICritter with it's name and this model.Owner as the model.Owner.
-		iCritter = new ICritterDog("John's model.ICritter", this);
+		// create our new ICritter with it's name and this Owner as the Owner.
+		name = ownerName;
+		iCritter = new ICritterPenguin(critterName, this);
 
-		credits = 10;// owner starts with 10 credits
+		credits = 30;// owner starts with 10 credits
 
 		// initialize treats to an empty linkedList.
 		treats = new LinkedList<Treat>();
+
 	}
 
 	/**
 	 * <b>giveTreat</b>
 	 * <p>
-	 * Gives a treat to this owner's model.ICritter and returns the model.ICritter's reaction. If the owner does not own the treat, this
+	 * Gives a treat to this owner's ICritter and returns the ICritter's reaction. If the owner does not own the treat, this
 	 * method will return null. Once finished, this owner will no longer own the treat passed in.
 	 * 
 	 * @param theTreat
-	 *            The treat to give to the model.ICritter. {@link Treat}
+	 *            The treat to give to the ICritter. {@link Treat}
 	 * 
-	 * @return model.ICritterReaction {@link ICritterReaction}
+	 * @return ICritterReaction {@link ICritterReaction}
 	 * 
 	 *
 	 */
+
 	public ICritterReaction giveTreat(Treat theTreat)
 	{
 		if (treats.contains(theTreat))
 		{// does the owner own the treat?
 			treats.remove(theTreat);// remove the treat from our treats list
-			return iCritter.receiveTreat(theTreat);// return the model.ICritter's reaction
+			this.setChanged();
+			this.notifyObservers(new view.ICritterUpdate(view.ICritterUpdate.UPDATE_OWNER));
+			return iCritter.receiveTreat(theTreat);// return the ICritter's reaction
 		} else
 			return null;// owner does not own the treat
 	}
@@ -62,9 +76,9 @@ public class Owner
 	/**
 	 * <b>buyCheapTreat</b>
 	 * <p>
-	 * Buys a cheap treat with the given description and adds it to the owner's treats list. If the model.Owner does not have
+	 * Buys a cheap treat with the given description and adds it to the owner's treats list. If the Owner does not have
 	 * enough credits, the treat will not be bought and the treat will not be added, this method will also return null. If
-	 * the model.Owner does have enough credits, the treat will be bought and the treat returned.
+	 * the Owner does have enough credits, the treat will be bought and the treat returned.
 	 * 
 	 * @param desc
 	 *            The description of the treat requested to be bought.
@@ -80,7 +94,23 @@ public class Owner
 
 		if (credits >= theTreat.getCost())
 		{// if we have enough money
-			credits -= theTreat.getCost();// subtract the credits
+			adjustCredits(-theTreat.getCost());// subtract the credits
+			addTreat(theTreat);// add our treat to our treat stockpile
+			return theTreat;// return the treat
+		} else
+		{// otherwise return null
+			return null;
+		}
+	}
+
+	public FancyTreat buyFancyTreat(String desc)
+	{
+		// create the fancyTreat
+		FancyTreat theTreat = new FancyTreat(desc);
+
+		if (credits >= theTreat.getCost())
+		{// if we have enough money
+			adjustCredits(-theTreat.getCost());// subtract the credits
 			addTreat(theTreat);// add our treat to our treat stockpile
 			return theTreat;// return the treat
 		} else
@@ -94,7 +124,7 @@ public class Owner
 	 * <p>
 	 * This will return a list of treats owned by the owner. This list may be empty.
 	 * 
-	 * @return List<model.Treat> {@link Treat}
+	 * @return List<Treat> {@link Treat}
 	 * 
 	 *
 	 */
@@ -106,7 +136,7 @@ public class Owner
 	/**
 	 * <b>getCritter</b>
 	 * <p>
-	 * Returns a reference to the critter owned by this model.Owner.
+	 * Returns a reference to the critter owned by this Owner.
 	 * 
 	 * @return {@link ICritter}
 	 * 
@@ -143,7 +173,10 @@ public class Owner
 	 */
 	private void adjustCredits(Integer amount)
 	{
+
 		credits += amount;
+		this.setChanged();
+		this.notifyObservers(new view.ICritterUpdate(view.ICritterUpdate.UPDATE_OWNER));
 	}
 
 	/**
@@ -159,5 +192,13 @@ public class Owner
 	public void addTreat(Treat theTreat)
 	{
 		treats.add(theTreat);
+		this.setChanged();
+		this.notifyObservers(new view.ICritterUpdate(view.ICritterUpdate.UPDATE_OWNER));
 	}
+
+	public String getName()
+	{
+		return name;
+	}
+
 }

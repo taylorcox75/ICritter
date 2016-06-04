@@ -1,13 +1,15 @@
-package model;/*
+/*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 4
- * Unchanged from Assisgnment 3
+ * Assignment: Assignment 5
+ * This Class Is Unchanged From Assignment 4
  */
 
+package model;
+
 /**
- * Class describes an model.ICritterMemoryEvent. A memory event is used to store how an model.ICritter reacted to something.
- * ICritterMemoryEvents are stored in an model.ICritter.
+ * Class describes an ICritterMemoryEvent. A memory event is used to store how an ICritter reacted to something.
+ * ICritterMemoryEvents are stored in an ICritter.
  * 
  *
  */
@@ -17,7 +19,7 @@ public class ICritterMemoryEvent
 	private ICritterReaction rememberedReaction;// the reaction to remember for this event
 
 	/**
-	 * Will create a new model.ICritterMemoryEvent.
+	 * Will create a new ICritterMemoryEvent.
 	 * 
 	 * @param theTreat
 	 *            The treat to remember for this reaction
@@ -36,7 +38,7 @@ public class ICritterMemoryEvent
 	/**
 	 * Returns the rememberedTreat
 	 * 
-	 * @return model.Treat {@link Treat}
+	 * @return Treat {@link Treat}
 	 *
 	 */
 	public Treat getRememberedTreat()
@@ -47,7 +49,7 @@ public class ICritterMemoryEvent
 	/**
 	 * Returns the rememberedReaction
 	 * 
-	 * @return model.ICritterReaction {@link ICritterReaction}
+	 * @return ICritterReaction {@link ICritterReaction}
 	 */
 	public ICritterReaction getRememberedReaction()
 	{

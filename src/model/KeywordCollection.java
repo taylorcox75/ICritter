@@ -1,65 +1,156 @@
-package model;/*
+/*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 4
- * Creates a model.KeywordCollection Set based off of the model.ICritter's interests
+ * Assignment: Assignment 5
+ * This Class Is Unchanged From Assignment 4
  */
 
-import java.util.*;
+package model;
 
+import java.util.Set;
+import java.util.TreeSet;
+
+/**
+ * A collection of keywords that can be correlated to other keywordcollections to determine how close of a match they are.
+ * 
+ *
+ */
 public class KeywordCollection
 {
-	private Set<String> keywords; // Setting up a new set String
+	private Set<String> keywords;
 
+	/**
+	 * <b>KeywordCollection</b>
+	 * <p>
+	 * Creates a new keywordcollection class and initializes the set of keywords.
+	 * 
+	 *
+	 */
 	public KeywordCollection()
 	{
-		keywords = new HashSet<String>(); // Initializes it as a HashSet
+		keywords = new TreeSet<String>();
 	}
 
+	/**
+	 * <b>listKeywords</b>
+	 * <p>
+	 * Returns a set of the keywords
+	 * 
+	 * @return Set<String>
+	 * 
+	 *
+	 */
 	public Set<String> listKeywords()
 	{
-
-		return keywords; // Returns our Set of the keywords
+		return keywords;
 	}
 
-	public boolean addKeyword(String toAdd)
+	/**
+	 * <b>addKeyword</b>
+	 * <p>
+	 * If the given keyword already exists, then return false, otherwise add the keyword to our set and return true.
+	 * 
+	 * @parm theWord The word to add to our set.
+	 * 
+	 * @return boolean
+	 * 
+	 *
+	 */
+	public boolean addKeyword(String theWord)
 	{
-
-		if (keywords.contains(toAdd)) // Checks to see if we already have a keyword in our life
+		if (keywords.contains(theWord))// do we have this keyword already?
+			return false;
+		else
 		{
-			return false; // Returns false if we do
+			keywords.add(theWord);// add the word to our set
+			return true;
 		}
-
-		keywords.add(toAdd); // Adds it to our keywordlist
-		return true;
 	}
 
-	public boolean removeKeyword(String toAdd)
+	/**
+	 * <b>removeKeyword</b>
+	 * <p>
+	 * Removes the given keyword from the set. If the keyword exists, returns true; otherwise, false.
+	 * 
+	 * @parm theWord The word to remove from the set
+	 * 
+	 * @return boolean
+	 * 
+	 *
+	 */
+	public boolean removeKeyword(String theWord)
 	{
-
-		return keywords.remove(toAdd); // Calls HashSet API to find and remove the given String.
-
+		return keywords.remove(theWord);// the remove method satisfies the requirements for this method
 	}
 
-	public double correlation(KeywordCollection other)
+	/**
+	 * <b>correlation</b>
+	 * <p>
+	 * Calculates the correlation between two sets of keys. Determines calculation by taking the cardinality of the
+	 * intersetion of both sets and dividing it by the cardinality of the union of both sets.
+	 * 
+	 * @parm oColl The other KeywordCollection
+	 * 
+	 * @return double
+	 * 
+	 *
+	 */
+	public double correlation(KeywordCollection oColl)
 	{
-		Set<String> currentKeywords = listKeywords(); // This is the current Critter's interests
-		Set<String> otherKeywords = other.listKeywords(); // This is the passeed in Critter's interests
-		Double toReturn = 0.0;
-		
-		if (otherKeywords.size() == 0 && currentKeywords.size() == 0) // If both arrays are empty, they can be friends
-		{
-			return 1; // Return 1 so MarineCritter can add the Animal
-		}
-		
-		Set<String> intersection = new HashSet<String>(currentKeywords); // A new set to store intersections
-
-		intersection.retainAll(otherKeywords); // Intersection retains all the similar Strings
-		
-		int divideBy = (currentKeywords.size() + otherKeywords.size() - intersection.size()); // Finds what we need to divide by
-		toReturn = intersection.size() / (double) divideBy; // Does the division
-		
-		return toReturn; // Returns the number as a double
+		// do the calculation and return it as a double
+		double intersectSize = intersection(oColl).size();
+		double unionSize = union(oColl).size();
+		if (unionSize > 0)
+			return intersectSize / unionSize;
+		else
+			return 1;// if neither Critter has any interests, then they share all interests
 	}
 
+	/**
+	 * <b>union</b>
+	 * <p>
+	 * Takes another KeywordCollection and returns a Set that is a union of the two.
+	 * 
+	 * @parm oColl The other KeywordCollection
+	 * 
+	 * @return Set<String>
+	 * 
+	 *
+	 */
+	private Set<String> union(KeywordCollection oColl)
+	{
+		Set<String> output = new TreeSet<String>();
+
+		for (String i : oColl.keywords)
+			// add all elements of oColl's keywords to output
+			output.add(i);
+		// add all the elements of keywords to the output, anything already there will not be duplicated because a Set does
+		// not duplicate keys
+		for (String i : keywords)
+			output.add(i);
+
+		return output;
+	}
+
+	/**
+	 * <b>intersection</b>
+	 * <p>
+	 * Returns the intersection of this set of keywords and the provided KeywordCollection's set of keywords
+	 * 
+	 * @parm oColl The other KeywordCollection
+	 * 
+	 * @return Set<String>
+	 * 
+	 *
+	 */
+	private Set<String> intersection(KeywordCollection oColl)
+	{
+		Set<String> output = new TreeSet<String>();
+
+		for (String i : keywords)
+			// add all keywords that exist in both collections
+			if (oColl.keywords.contains(i))
+				output.add(i);
+		return output;
+	}
 }

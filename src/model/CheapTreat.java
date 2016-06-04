@@ -1,12 +1,14 @@
-package model;/*
+/*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 4
- * Unchanged from Assignment 3
+ * Assignment: Assignment 5
+ * Added a toString to get the Name
  */
 
+package model;
+
 /**
- * Class describes a model.CheapTreat. model.CheapTreat is an extension of the class model.Treat {@link Treat}
+ * Class describes a CheapTreat. CheapTreat is an extension of the class Treat {@link Treat}
  * 
  *
  */
@@ -14,7 +16,7 @@ public class CheapTreat extends Treat
 {
 
 	/**
-	 * Constructs a new model.CheapTreat
+	 * Constructs a new CheapTreat
 	 * 
 	 * @param desc
 	 *            description of the treat
@@ -27,13 +29,18 @@ public class CheapTreat extends Treat
 	}
 
 	/**
-	 * returns the cost of a model.CheapTreat (currently 1)
+	 * returns the cost of a CheapTreat (currently 1)
 	 * 
 	 *
 	 */
 	public Integer getCost()
 	{
 		return 1;
+	}
+
+	public String toString()
+	{
+		return "Cheap Treat";
 	}
 
 }

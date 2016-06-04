@@ -1,20 +1,22 @@
-package model;/*
+/*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 4
- * Penguin type of model.ICritter
+ * Assignment: Assignment 5
+ * This Class Is Unchanged From Assignment 4
  */
 
+package model;
+
+/**
+ * Defines and ICritterPenguin (my favorite type of marine animal)
+ * 
+ *
+ */
 public class ICritterPenguin extends MarineICritter
-{ // Extends the model.MarineICritter
+{
 
 	public ICritterPenguin(String theName, Owner theOwner)
 	{
-		super(theName, theOwner); // Calls super on this class
-	}
-
-	public void interact(ICritter inCritter)
-	{
-		super.interact(inCritter); // To interact it calls super
+		super(theName, theOwner);
 	}
 }

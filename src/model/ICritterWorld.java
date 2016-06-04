@@ -1,57 +1,108 @@
-package model;/*
+/*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 4
- * Creates a model.KeywordCollection Set based off of the model.ICritter's interests
+ * Assignment: Assignment 5
+ * This Class Is Unchanged From Assignment 4
  */
 
-import java.util.*;
+package model;
 
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
+/**
+ * Class to represent the world the ICritters live in.
+ * 
+ *
+ */
 public class ICritterWorld
 {
 
-	private List<ICritter> iCritters; // Creates a list of iCritters in the World
+	private List<ICritter> iCritters;// the list of ICritters
 
+	/**
+	 * <b>ICritterWord</b>
+	 * <p>
+	 * Creates a new ICritterWord and gets it ready to receive new ICritters
+	 */
 	public ICritterWorld()
 	{
-		iCritters = new LinkedList<ICritter>(); // Initializes it as a Linked List
+		iCritters = new LinkedList<ICritter>();// initialize our list
 	}
 
+	/**
+	 * <b>listICritters</b>
+	 * <p>
+	 * Returns a list of the ICritters currently in the world.
+	 * 
+	 * @return List<{@link ICritter}> The list of ICritters
+	 * 
+	 *
+	 */
 	public List<ICritter> listICritters()
 	{
-		return iCritters; // Gets a list of all of the ICritterrs
+		return iCritters;
 	}
 
+	/**
+	 * <b>addICritter</b>
+	 * <p>
+	 * Adds an ICritter to the world. If the ICritter already exists this method returns false and makes no changes;
+	 * otherwise, it adds the ICritter to the world and returns true.
+	 * 
+	 * @parm toAdd The ICritter to add to the world
+	 * 
+	 * @return boolean
+	 * 
+	 *
+	 */
 	public boolean addICritter(ICritter toAdd)
 	{
-		for (int i = 0; i < iCritters.size(); i++) // Iterates through the whole model.ICritter list
+		if (iCritters.contains(toAdd))
+			return false;
+		else
 		{
-			if (toAdd.equals(iCritters.get(i))) // If Critter 1 = Critter 2, != add
-			{
-				return false; // Returns false
-			}
+			iCritters.add(toAdd);
+			return true;
 		}
-		iCritters.add(toAdd); // Adds the Critter to the list if he isn't already there
-		return true;
 	}
 
+	/**
+	 * <b>removeICritter</b>
+	 * <p>
+	 * Removes the ICritter from the world. If the ICritter doesn't exist, this method returns false; otherwise, true and
+	 * removes the ICritter.
+	 * 
+	 * @parm toRemove The ICritter to remove from the world
+	 * 
+	 * @return boolean
+	 * 
+	 *
+	 */
 	public boolean removeICritter(ICritter toRemove)
 	{
-		return iCritters.remove(toRemove); // API method for LinkedList searches and returns a boolean if it can remove
+		return iCritters.remove(toRemove);// the remove method follows the conventions required by this method
 	}
 
+	/**
+	 * <b>runJamboree</b>
+	 * <p>
+	 * Iterates over all the ICritters in a speudo-random order and has them call <i>interact</i> on all the other ICritters
+	 * (not including itself)
+	 * 
+	 *
+	 */
 	public void runJamboree()
 	{
-		for (int i = 0; i < iCritters.size(); i++) // The outer loop that goes through all of the Critters
-		{
-			for (int j = 0; j < iCritters.size(); j++) // The inner loop to check each Critter against another
-			{
-				if (iCritters.get(i).equals(iCritters.get(j)) == false) // Skips over themselves
-				{
-					iCritters.get(i).interact(iCritters.get(j)); // Calls interact on the other model.ICritter
-				}
+		Collections.shuffle(iCritters);// shuffle the list of ICritters
+		for (ICritter current : iCritters)
+		{// iterate over all the ICritters
+			for (ICritter interactOn : iCritters)
+			{// iterate over all of them again and interact with each one (except for itself)
+				if (!current.equals(interactOn))// if it's not the same one
+					current.interact(interactOn);// interact with them
 			}
 		}
 	}
-
 }
