@@ -1,0 +1,6 @@
+receiveTreat
+consumeTreat
+addMemoryEvent
+getMemories
+getOwner
+getName

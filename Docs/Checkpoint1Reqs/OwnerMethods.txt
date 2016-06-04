@@ -1,0 +1,7 @@
+giveTreat
+buyCheapTreat
+addTreat
+adjustCredits
+listTreats
+getCritter
+getCredits
