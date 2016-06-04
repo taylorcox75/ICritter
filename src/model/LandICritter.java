@@ -1,8 +1,8 @@
 /*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 5
- * This Class Is Unchanged From Assignment 4
+ * Assignment: Assignment 6
+ * This Class Is Unchanged From Assignment 5
  */
 
 package model;
@@ -30,10 +30,10 @@ public abstract class LandICritter extends ICritter
 	 */
 	public void interact(ICritter other)
 	{
+
 		if (other instanceof LandICritter)
-		{
-			addFriend(other);// add them as a friend since they are a LandICritter
-		}
-		// LandICritter doesn't add any other types of ICritters as friends, nothing else to do here
+			addFriend(other);
+
+			// LandICritter doesn't add any other types of ICritters as friends, nothing else to do here
 	}
 }

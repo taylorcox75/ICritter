@@ -1,9 +1,10 @@
 /*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 5
- * This Class Is Unchanged From Assignment 4
+ * Assignment: Assignment 6
+ * This Class Is Unchanged From Assignment 5
  */
+
 
 package model;
 
@@ -30,8 +31,15 @@ public abstract class MarineICritter extends ICritter
 	 */
 	public void interact(ICritter other)
 	{
+		try {
+			this.interestCorrelation(other);
+		} catch (NoInterestsException e) {
+			addFriend(other);
+			return;
+		} 
 		if (this.interestCorrelation(other) >= .5)// if the interest correlation between the two is at least 50%
 			addFriend(other);
-		// doesn't add any other ICritters as friends
+
 	}
 }
+

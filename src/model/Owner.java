@@ -1,14 +1,13 @@
 /*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 5
+ * Assignment: Assignment 6
  * This Class extends Observable, sets changed, and notifies observable
+ * Also uses Exception Handling as well
  * 
- * this.setChanged() 
- * Let's notify observers know that something is changed
+ * buyFancyTreat and buyCheapTreat are changed to catch exception
+ * adjustCredits also adjusted to throw exception
  * 
- * this.notifyObservers(new view.ICritterUpdate(view.ICritterUpdate.UPDATE_OWNER))
- * Calls the respective update methods in ICritterView()
  */
 
 package model;
@@ -92,31 +91,52 @@ public class Owner extends Observable
 		// create the cheapTreat
 		CheapTreat theTreat = new CheapTreat(desc);
 
-		if (credits >= theTreat.getCost())
-		{// if we have enough money
-			adjustCredits(-theTreat.getCost());// subtract the credits
-			addTreat(theTreat);// add our treat to our treat stockpile
-			return theTreat;// return the treat
-		} else
-		{// otherwise return null
+		try
+		{
+			adjustCredits(-theTreat.getCost());
+		} catch (NotEnoughCreditsException e)
+		{
+
 			return null;
 		}
+
+		// credits -= theTreat.getCost();// subtract the credits
+		addTreat(theTreat);// add our treat to our treat stockpile
+		return theTreat;// return the treat
+
 	}
 
+	/**
+	 * <b>buyFancyTreat</b>
+	 * <p>
+	 * Buys a fancy treat with the given description and adds it to the owner's treats list. If the Owner does not have
+	 * enough credits, the treat will not be bought and the treat will not be added, this method will also return null. If
+	 * the Owner does have enough credits, the treat will be bought and the treat returned.
+	 * 
+	 * @param desc
+	 *            The description of the treat requested to be bought.
+	 * 
+	 * @return {@link FancyTreat}
+	 * 
+	 *
+	 */
 	public FancyTreat buyFancyTreat(String desc)
 	{
-		// create the fancyTreat
+		// create the cheapTreat
 		FancyTreat theTreat = new FancyTreat(desc);
 
-		if (credits >= theTreat.getCost())
-		{// if we have enough money
-			adjustCredits(-theTreat.getCost());// subtract the credits
-			addTreat(theTreat);// add our treat to our treat stockpile
-			return theTreat;// return the treat
-		} else
-		{// otherwise return null
+		try
+		{
+			adjustCredits(-theTreat.getCost());
+		} catch (NotEnoughCreditsException e)
+		{
+
 			return null;
 		}
+
+		// credits -= theTreat.getCost();// subtract the credits
+		addTreat(theTreat);// add our treat to our treat stockpile
+		return theTreat;// return the treat
 	}
 
 	/**
@@ -170,9 +190,12 @@ public class Owner extends Observable
 	 *            Amount to adjust the credits by
 	 * 
 	 *
+	 * @throws NotEnoughCreditsException
 	 */
-	private void adjustCredits(Integer amount)
+	private void adjustCredits(Integer amount) throws NotEnoughCreditsException
 	{
+		if (Math.abs(amount) > getCredits())
+			throw new NotEnoughCreditsException(Math.abs(amount), getCredits());
 
 		credits += amount;
 		this.setChanged();

@@ -1,9 +1,10 @@
 /*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 5
- * This Class Is Unchanged From Assignment 4
+ * Assignment: Assignment 6
+ * This Class Is Unchanged From Assignment 5
  */
+
 
 package model;
 
@@ -94,16 +95,27 @@ public class KeywordCollection
 	 * @return double
 	 * 
 	 *
+	 * @throws NoInterestsException
 	 */
-	public double correlation(KeywordCollection oColl)
+	/*
+	 * correlation()
+	 * 
+	 * Throws an exception if the size of both lists are 0.
+	 */
+	public double correlation(KeywordCollection oColl) throws NoInterestsException
 	{
 		// do the calculation and return it as a double
 		double intersectSize = intersection(oColl).size();
 		double unionSize = union(oColl).size();
-		if (unionSize > 0)
+		if (oColl.listKeywords().size() == 0 && listKeywords().size() == 0)
+		{
+			throw new NoInterestsException();
+		}
+		if (unionSize != 0.0)
 			return intersectSize / unionSize;
 		else
-			return 1;// if neither Critter has any interests, then they share all interests
+			return 0.0;
+
 	}
 
 	/**

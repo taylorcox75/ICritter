@@ -1,17 +1,10 @@
 /*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 5
- * This Class extends Observable, sets changed, and notifies observable
- * 
- * this.setChanged() 
- * Let's notify observers know that something is changed
- * 
- * this.notifyObservers(new view.ICritterUpdate(view.ICritterUpdate.UPDATE_OWNER))
- * Calls the respective update methods in ICritterView()
- * 
- * Also added a getHappiness() Method
+ * Assignment: Assignment 6
+ * This Class Is Unchanged From Assignment 5
  */
+
 package model;
 
 import java.util.*;

@@ -1,9 +1,10 @@
 /*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 5
- * Added a toString to get the Name
+ * Assignment: Assignment 6
+ * This Class Is Unchanged From Assignment 5
  */
+
 
 package model;
 

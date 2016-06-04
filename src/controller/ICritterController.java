@@ -1,8 +1,8 @@
 /*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 5
- * This Class Handles The Main Interface as Well as Menus.
+ * Assignment: Assignment 6
+ * Unchanged Class From Assignment 5
  */
 
 package controller;
@@ -10,9 +10,7 @@ package controller;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
-
 import model.*;
 import view.*;
 
@@ -35,7 +33,7 @@ public class ICritterController extends JFrame
 	 */
 	public ICritterController(String iCritterName)
 	{
-		theOwner = new Owner("Taylor", iCritterName); // Creates a new ICritter
+		theOwner = new Owner("Taylor and Cameron", iCritterName); // Creates a new ICritter
 		layoutGUI();
 
 	}
@@ -50,7 +48,7 @@ public class ICritterController extends JFrame
 	public void layoutGUI()
 	{
 		// Set up the Main Frame
-		this.setTitle("ICritter");
+		this.setTitle("CSc 335 Assignment 5");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(600, 600);
 		this.setLayout(new BorderLayout());
@@ -129,7 +127,7 @@ public class ICritterController extends JFrame
 		public void actionPerformed(ActionEvent ae)
 		{
 			// Shows a dialogue with the about information
-			JOptionPane.showMessageDialog(about, "ICritter 5\nTaylor Cox\nCameron Morrell");
+			JOptionPane.showMessageDialog(about, "ICritter Assignment 6\nTaylor Cox\nCameron Morrell");
 
 		}
 	}

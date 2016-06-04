@@ -1,9 +1,10 @@
 /*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 5 Extra Credit
- * This Class Handles The GUI for the Owner
+ * Assignment: Assignment 6
+ * Unchanged Class From Assignment 5
  */
+
 package view;
 
 import java.awt.*;
@@ -11,10 +12,9 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-import controller.ICritterController.aboutListener;
 import model.*;
 
-public class OwnerPanel extends JPanel
+public class OwnerInfoPanel extends JPanel
 {
 
 	private static final long serialVersionUID = 3L;
@@ -30,7 +30,7 @@ public class OwnerPanel extends JPanel
 	 * 
 	 * Calls SetUp GUI()
 	 */
-	public OwnerPanel(Owner passedIn)
+	public OwnerInfoPanel(Owner passedIn)
 	{
 		theOwner = passedIn;
 		setUpGUI();
@@ -140,7 +140,7 @@ public class OwnerPanel extends JPanel
 					theOwner.giveTreat((Treat) currentTreats.getSelectedValue()); // Gets Current Selection
 
 				else
-					JOptionPane.showMessageDialog(ownerStuff, "Please Select A Treat To Give");
+					JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(ownerStuff), "Please Select A Treat To Give");
 
 			}
 		}

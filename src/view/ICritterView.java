@@ -1,24 +1,22 @@
 /*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 5
- * This Class Handles The GUI for the ICritter and Owner GUI Structures
+ * Assignment: Assignment 6
+ * Unchanged Class From Assignment 5
  */
 package view;
 
 import java.awt.*;
 import java.util.*;
-
 import javax.swing.*;
-
 import model.*;
 
 public class ICritterView extends JPanel implements Observer
 {
 	private static final long serialVersionUID = 2L;
 	private JPanel mainJP;
-	private OwnerPanel ownerInfo;
-	private ICritterPanel critterInfo;
+	private OwnerInfoPanel ownerInfo;
+	private ICritterInfoPanel critterInfo;
 	private Owner theOwner;
 
 	/*
@@ -61,8 +59,8 @@ public class ICritterView extends JPanel implements Observer
 		mainJP.add(new JLabel("ICritter: " + theOwner.getCritter().getName() + "          Owner: " + theOwner.getName()), BorderLayout.NORTH);
 		//
 		// Need to Create new OwnerPanel Object, and ICritterPanel Object
-		ownerInfo = new OwnerPanel(theOwner); // Creates ownerInfo panel
-		critterInfo = new ICritterPanel(theOwner); // Creates critterInfo panel
+		ownerInfo = new OwnerInfoPanel(theOwner); // Creates ownerInfo panel
+		critterInfo = new ICritterInfoPanel(theOwner); // Creates critterInfo panel
 		ImageIcon theImageIcon = new ImageIcon("images/ourPicture.jpg"); // Grabs the Image
 		JLabel imageLabel = new JLabel(theImageIcon); // Adds it to a label
 		//

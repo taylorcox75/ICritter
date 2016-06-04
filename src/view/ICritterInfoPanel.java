@@ -1,8 +1,8 @@
 /*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 5 Extra Credit
- * This Class Handles The GUI for the ICritter
+ * Assignment: Assignment 6
+ * Unchanged Class From Assignment 5
  */
 package view;
 
@@ -11,7 +11,7 @@ import javax.swing.*;
 
 import model.*;
 
-public class ICritterPanel extends JPanel
+public class ICritterInfoPanel extends JPanel
 {
 	private static final long serialVersionUID = 4L;
 	private JPanel critterInfo;
@@ -25,7 +25,7 @@ public class ICritterPanel extends JPanel
 	 * 
 	 * Calls SetUp GUI()
 	 */
-	public ICritterPanel(Owner passedIn)
+	public ICritterInfoPanel(Owner passedIn)
 	{
 		theOwner = passedIn;
 		setUpGUI();

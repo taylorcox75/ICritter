@@ -1,9 +1,10 @@
 /*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 5
- * This Class Is Unchanged From Assignment 4
+ * Assignment: Assignment 6
+ * This Class Is Unchanged From Assignment 5
  */
+
 
 package test;
 
@@ -11,7 +12,10 @@ import model.*;
 
 public class ICritterCaller
 {
-	//
+
+	/**
+	 * Main method to run and semi-test the code. Be sure to write JUnit tests to go along with this.
+	 */
 	public static void main(String args[])
 	{
 		ICritterWorld world = new ICritterWorld();

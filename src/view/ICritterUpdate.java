@@ -1,8 +1,8 @@
 /*
  * Name: Taylor Cox and Cameron Morrell
  * Section Leader: [Taylor (Jimmy Fagan) and [Cameron (Greg DePaul] 
- * Assignment: Assignment 5
- * This Class Handles ICritterUpdates
+ * Assignment: Assignment 6
+ * Unchanged Class From Assignment 5
  */
 
 package view;
